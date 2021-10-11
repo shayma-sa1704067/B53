@@ -17,22 +17,9 @@ class MainActivity : ComponentActivity() {
             CovidTrackerAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    CovidStatScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CovidTrackerAppTheme {
-        Greeting("Android")
     }
 }

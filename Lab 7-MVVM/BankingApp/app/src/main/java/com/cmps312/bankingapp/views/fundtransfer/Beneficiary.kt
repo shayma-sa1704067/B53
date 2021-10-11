@@ -23,7 +23,23 @@ import com.cmps312.bankingapp.views.BankingViewModel
 @Composable
 fun Beneficiary(navHostController: NavHostController, bankingViewModel: BankingViewModel) {
     LazyColumn {
+            //display the list of all beneficiaries [the one in the json file ]
+      items(bankingViewModel.beneficiaries) { beneficiary ->  //ben..-> we create an instance of this lambda
+          //for each item [beneficiary -> ] do display beneficiary card
+          BeneficiaryCard(beneficiary,onSelectedBeneficiary = {
+              bankingViewModel.apply {
+                 //when i select on any of the beneficiary card that consist of [name , account no.] it will do 2 things :
 
+                  //1- it will navigate us to the confirmation screen
+                  // 2-do the new transfer [add 2 details {benficaaccount , benificamount }]
+                  newTransfer.beneficiaryAccountNo = beneficiary.accountNo
+                  newTransfer.beneficiaryName= beneficiary.name
+              }
+              navHostController.navigate(Screen.Confirmation.route)
+          })
+
+
+      }
     }
 }
 

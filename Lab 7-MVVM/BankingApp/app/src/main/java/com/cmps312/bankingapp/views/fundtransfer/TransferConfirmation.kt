@@ -25,6 +25,24 @@ fun TransferConfirmation(navHostController: NavHostController, bankingViewModel:
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            bankingViewModel.apply {
+                Text(text = "From Account Number : ${newTransfer.fromAccountNo}")//we only need the new Transfer so ->$...
+                Text(text = "Account Transferred : ${newTransfer.amount}")
+                Text(text = "Beneficiary Account Number : ${newTransfer.beneficiaryAccountNo} ")
+                Text(text = "Beneficiary Name : ${newTransfer.beneficiaryName}")
+
+                //when i click on the confirm button ->
+                // 1-[ navigate]it taking me back to the home screen
+                // 2-  add the new transfer that we just create it
+
+                Button(onClick = { bankingViewModel.addTransfer
+                navHostController.navigate(Screen.Home.route)
+
+                }) {
+                    Text(text = "Confirm")
+                }
+            }
+
 
         }
     }

@@ -25,6 +25,8 @@ import com.cmps312.bankingapp.views.BankingViewModel
 @Composable
 fun FundTransfer(navHostController: NavHostController, bankViewModel: BankingViewModel) {
 
+    //a the home screen we have -> select account[drop down ] , amount
+    //these are changeable / we add more in progress so itsa mutablestate
     var fromAccount by remember { mutableStateOf("") }
     var amount by remember { mutableStateOf("") }
 
@@ -61,6 +63,9 @@ fun FundTransfer(navHostController: NavHostController, bankViewModel: BankingVie
             /*
                 Drop Down
              */
+            //first textfiels it has/composed of row of  ->
+            //1-  Outlined text filed
+            //2- drop down
             Row(verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.clickable { expandable = !expandable }) {
                 OutlinedTextField(
@@ -75,12 +80,15 @@ fun FundTransfer(navHostController: NavHostController, bankViewModel: BankingVie
                         .padding(16.dp, 0.dp)
                         .fillMaxWidth()
                 )
+                //its displaing a list of accounts
                 DropdownMenu(expanded = expandable, onDismissRequest = { expandable = false }) {
+            //we created above an instance of bankViewModel ,so we called it
+
                     bankViewModel.accounts.forEach { account ->
                         DropdownMenuItem(onClick = {
                             expandable = false
                             selectedBeneficiary = account.toString()
-                            fromAccount = account.accountNo
+                            fromAccount = account.accountNo //whatever the user select from it take the account.accountNO
                         }) {
                             Text(text = "$account", fontWeight = FontWeight.Bold)
                         }
@@ -99,6 +107,10 @@ fun FundTransfer(navHostController: NavHostController, bankViewModel: BankingVie
                     .padding(16.dp)
                     .fillMaxWidth()
             )
+
+    // Button does 2 things
+            //2-  also adds sth to the new transfer when we click on fun transfer
+            //1- then it navigate me  to the beneficiary screen
 
             Button(onClick = {
                 if (fromAccount != "Select Your Account" &&

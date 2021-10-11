@@ -36,12 +36,28 @@ fun Home(navHostController: NavHostController, bankingViewModel: BankingViewMode
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
+            val transfers = bankingViewModel.transfers.value
+            LazyColumn{
+                items(transfers){ transfer->
+                    TransferCard(transfer, onTransferSelected = {
+
+                        //First-------------//
+                        //we create the a lazy column of the transfers
+                        //display what the transfer  had initialy -> 2  things only
+                        //we call the card that has the transfer data already
+
+                        bankingViewModel.selectedTransfer = transfer
+                        navHostController.navigate(Screen.TransferDetails.route)
+                    })
+
+                }
+            }
         }
     }
 }
 
 @Composable
-fun TransferCar(transfer: Transfer, onTransferSelected: () -> Unit) {
+fun TransferCard(transfer: Transfer, onTransferSelected: () -> Unit) {
     Card(elevation = 10.dp,
         backgroundColor = Color.LightGray,
         modifier = Modifier
