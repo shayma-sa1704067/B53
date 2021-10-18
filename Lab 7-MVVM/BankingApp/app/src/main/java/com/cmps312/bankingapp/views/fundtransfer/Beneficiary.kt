@@ -25,10 +25,11 @@ fun Beneficiary(navHostController: NavHostController, bankingViewModel: BankingV
     LazyColumn {
             //display the list of all beneficiaries [the one in the json file ]
       items(bankingViewModel.beneficiaries) { beneficiary ->  //ben..-> we create an instance of this lambda
-          //for each item [beneficiary -> ] do display beneficiary card
+          //for each beneficiary ->  do display beneficiary card
           BeneficiaryCard(beneficiary,onSelectedBeneficiary = {
+              //when im selecting the one of the  beneficiary cards i want the bankingViewMode[ new transfer] to know which benefic. i have selected
               bankingViewModel.apply {
-                 //when i select on any of the beneficiary card that consist of [name , account no.] it will do 2 things :
+                 //when i select on any of the beneficiary card that consist of [name , account no.] it will add/do 2 things :
 
                   //1- it will navigate us to the confirmation screen
                   // 2-do the new transfer [add 2 details {benficaaccount , benificamount }]
@@ -37,7 +38,8 @@ fun Beneficiary(navHostController: NavHostController, bankingViewModel: BankingV
               }
               navHostController.navigate(Screen.Confirmation.route)
           })
-
+//onSelectedBeneficiary -> it does is that it moves us to the Confirmation screen
+          //and it calls the bankingview model because i need to store it in somewhere and add 2 things
 
       }
     }
@@ -49,7 +51,7 @@ fun BeneficiaryCard(beneficiary: Beneficiary, onSelectedBeneficiary: () -> Unit)
         backgroundColor = Color.LightGray,
         modifier = Modifier
             .padding(10.dp)
-            .clickable { onSelectedBeneficiary() }) {
+            .clickable { onSelectedBeneficiary() }) { // when i click on the card the onSelectBenficiary gets activated
         Row(modifier = Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(imageVector = Screen.Beneficiary.icon, contentDescription = "Person Image")
             Column(modifier = Modifier.weight(3f)) {

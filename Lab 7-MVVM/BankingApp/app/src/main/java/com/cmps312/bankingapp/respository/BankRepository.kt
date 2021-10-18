@@ -7,10 +7,10 @@ import com.cmps312.bankingapp.model.Transfer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-
+//in the repository we need to load the JSON file into the classes that we have created
 class BankRepository(private val context: Context){
 
-    //function that reads the data
+    //1-Create function that reads the data
 
     private fun readData(filename:String)=
         context.assets.open(filename).bufferedReader().use { it.readText() }

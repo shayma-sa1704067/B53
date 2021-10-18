@@ -10,10 +10,13 @@ import cmps312.lab3.mvvmpractice.view.Home
 @Composable
 fun AppNavHost(navHostController: NavHostController){
 
+    //StartDestination-> Home (screen class )
 NavHost(navController = navHostController, startDestination = Screen.Home.route){
 
-composable(route = Screen.Home.route){
+    //define composable route for each screen
 
+composable(route = Screen.Home.route){
+    //the navigation(navhost) will be called on the onAdd{floating}
     Home(onAdd = {navHostController.navigate(Screen.Add.route)})
 }
 composable(route=Screen.Add.route){

@@ -11,7 +11,7 @@ import cmps312.lab3.mvvmpractice.repository.BankRepository
 class GradeViewModel(appContext: Application) :AndroidViewModel(appContext){
 
 private val gradeRepository = BankRepository(appContext)
-
+//grade already hsa been modified its data in the getGrade
     val grades by lazy{gradeRepository.getGrades()}
 
    // val students :MutableState<List<Student>> = mutableStateOf(listOf())
@@ -25,7 +25,7 @@ fun setNewStudent(name:String,grade:String){
  fun addStudent(student: Student){
 students.add(student)
  }
-
+//onDelete function
    fun delete(student: Student){
     students.remove(student)
    }

@@ -21,6 +21,8 @@ import cmps312.lab3.mvvmpractice.viewmodel.GradeViewModel
 
 @Composable
 fun Home(onAdd: () -> Unit) {
+    //define a value of the viewModel to use it and take an object of it
+    //since viewmodel is context -> to call it use LocalContext.current
     val gradeViewModel =
         viewModel<GradeViewModel>(viewModelStoreOwner = LocalContext.current as ComponentActivity)
 
@@ -33,6 +35,7 @@ fun Home(onAdd: () -> Unit) {
         ) {
             val students = gradeViewModel.students
             LazyColumn {
+                //we want to add list to the student will use the Student card
                 items(students) { student ->
                     StudentCard(student, onDelete = { gradeViewModel.delete(student) })
 
@@ -42,8 +45,10 @@ fun Home(onAdd: () -> Unit) {
 
 
         }
+        //Arrangment so it can be at the left end of the page
         Column(verticalArrangement = Arrangement.Bottom, horizontalAlignment = Alignment.End) {
             FloatingActionButton(
+                //onAdd
                 onClick = { onAdd() },
                 backgroundColor = Color.Blue,
                 contentColor = Color.White,
@@ -69,11 +74,11 @@ fun StudentCard(student: Student, onDelete: () -> Unit) {
     ) {
         Row {
             Column {
-
+//at first its empty , when we add it will show
                 Text(text = "Name: ${student.name}")
                 Text(text = "Grade: ${student.grade}")
             }
-
+//OnDelete functionality will be on the view Model
             IconButton(onClick = { onDelete() }) {
                 Icon(imageVector = Icons.Filled.Delete, "")
             }

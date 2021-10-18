@@ -25,8 +25,8 @@ import com.cmps312.bankingapp.views.BankingViewModel
 @Composable
 fun FundTransfer(navHostController: NavHostController, bankViewModel: BankingViewModel) {
 
-    //a the home screen we have -> select account[drop down ] , amount
-    //these are changeable / we add more in progress so itsa mutablestate
+    //at the fun transfer screen we have -> select account[drop down ] , amount
+    //these are changeable / we add more in progress so its a mutablestate
     var fromAccount by remember { mutableStateOf("") }
     var amount by remember { mutableStateOf("") }
 
@@ -109,12 +109,12 @@ fun FundTransfer(navHostController: NavHostController, bankViewModel: BankingVie
             )
 
     // Button does 2 things
-            //2-  also adds sth to the new transfer when we click on fun transfer
+            //2-   adds a new account transfer to the new transfer when we click on fun transfer
             //1- then it navigate me  to the beneficiary screen
 
             Button(onClick = {
                 if (fromAccount != "Select Your Account" &&
-                    amount.isNotEmpty()
+                    amount.isNotEmpty() //if it not empty something is written , which mean we are adding a new transfer
                 ) {
                     //Todo  set the from account details and amount in the newAccount object inside the BankViewModel
                     bankViewModel.apply {

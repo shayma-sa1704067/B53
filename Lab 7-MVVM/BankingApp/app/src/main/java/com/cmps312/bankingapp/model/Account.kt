@@ -8,8 +8,8 @@ import kotlinx.serialization.Serializable
 data class Account(val type:String, val accountNo: String ){
 
     override fun toString() = "$type - $accountNo"
-    //return it as a String
-
+    //whenever we return something return it as a String
+    //and return it in form like -> type-accountNo
 
 
 }

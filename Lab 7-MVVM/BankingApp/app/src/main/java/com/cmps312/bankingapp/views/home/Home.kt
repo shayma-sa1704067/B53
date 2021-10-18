@@ -19,6 +19,7 @@ import com.cmps312.bankingapp.model.Transfer
 import com.cmps312.bankingapp.views.BankingViewModel
 
 //Todo implement the list of transfers , when the user clicks on a transfer navigate them to the detail screen that shows the complete transfer list
+//in the home screen when we click on the funtrasform button it navigate us to the Fun transfer screen
 @Composable
 fun Home(navHostController: NavHostController, bankingViewModel: BankingViewModel) {
     Card(
@@ -35,7 +36,7 @@ fun Home(navHostController: NavHostController, bankingViewModel: BankingViewMode
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-
+//Home screen is displaying the list of the transfers in a form of lazy column
             val transfers = bankingViewModel.transfers.value
             LazyColumn{
                 items(transfers){ transfer->

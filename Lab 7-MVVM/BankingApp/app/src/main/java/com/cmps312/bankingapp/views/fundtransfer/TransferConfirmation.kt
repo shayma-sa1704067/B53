@@ -15,6 +15,9 @@ import com.cmps312.bankingapp.views.BankingViewModel
 
 //Todo add the navigation
 @Composable
+//in the TransferConfirmation we have the [account no. , & benficiary name ,  ..]
+// all of these we will get it from the new transfer
+//which its store in the Beneficiary view mode
 fun TransferConfirmation(navHostController: NavHostController, bankingViewModel: BankingViewModel) {
     Card(modifier = Modifier
         .padding(16.dp)
@@ -33,7 +36,8 @@ fun TransferConfirmation(navHostController: NavHostController, bankingViewModel:
 
                 //when i click on the confirm button ->
                 // 1-[ navigate]it taking me back to the home screen
-                // 2-  add the new transfer that we just create it
+                // 2-  add the new transfer that we just create it,
+                    //which it will go to the banking view model and call the add transfer
 
                 Button(onClick = { bankingViewModel.addTransfer
                 navHostController.navigate(Screen.Home.route)
